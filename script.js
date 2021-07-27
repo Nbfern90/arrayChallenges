@@ -18,7 +18,7 @@ alwaysHungry([4, 1, 5, 7, 2]);
 function highPass(arr, cutoff) {
   var filteredArr = [];
  for (var i=0; i<arr.length; i++){
-   if( arr[i] >= 6){
+   if( arr[i] > cutoff){
      filteredArr.push(arr[i]);
      
    }
@@ -33,14 +33,20 @@ console.log(result);
 
 function betterThanAverage(arr) {
   var sum = 0;
-  for (var i=0; i<arr.length; i++){
-    var sum =(arr[i] / arr.length) * arr.length;
-  }
-  var count = 0
-  if(arr[i] > sum){
-    count=arr[i]> sum
-  }
 
+  for(var i=0; i<arr.length; i++){
+    sum += arr[i];
+  }
+  
+  var avg = sum / arr.length;
+  var count = 0
+
+  for(var i=0; i<arr.length; i++){
+    if(arr[i] > avg){
+      count++;
+    }
+  }
+ 
   return count;
 }
 var result = betterThanAverage([6, 8, 3, 10, -2, 5, 9]);
@@ -65,12 +71,13 @@ console.log(reverse(["a","b","c","d","e"]));
 
 function fibonacciArray(n){
   var fibArr =[0,1];
-  for (let i = 2; i < n + 1; i++){
-    arr.push(arr[i - 2]) + arr[i - 1]
+  while(fibArr.length < n){
+    var num1 = fibArr[fibArr.length-1];
+    var num2 = fibArr[fibArr.length-2];
+    fibArr.push(num1+ num2)
   }
-  return arr[n]
+  return fibArr;
 }
-
 
 var result = fibonacciArray(10);
 console.log(result);
